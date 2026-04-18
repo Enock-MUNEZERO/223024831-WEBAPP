@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currency Converter APP</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: white;
+  }
+  .converter {
+    background: #d3d3d3;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 14px;
+  }
+  input, select, button {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  button {
+    background: #4da6ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  button:hover {
+    background: #3399ff;
+  }
+  .result {
+    background: #000;
+    color: #fff;
+    padding: 10px;
+    min-height: 40px;
+    border-radius: 5px;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<div class="converter">
+  <h2>Currency Converter APP</h2>
+  
+  <label for="amount">Enter Amount in FRW</label>
+  <input type="number" id="amount" placeholder="Amount in FRW">
+  
+  <label for="currency">Select Currency</label>
+  <select id="currency">
+    <option value="USD">USD</option>
+    <option value="EURO">EURO</option>
+  </select>
+  
+  <label for="rate">Rate</label>
+  <input type="number" id="rate" placeholder="Exchange Rate">
+  
+  <button onclick="convertCurrency()">CONVERT</button>
+  
+  <div class="result" id="result">Result Here ....</div>
+</div>
+
+<script>
+function convertCurrency() {
+  let amount = parseFloat(document.getElementById('amount').value);
+  let rate = parseFloat(document.getElementById('rate').value);
+  let currency = document.getElementById('currency').value;
+  
+  if(isNaN(amount) || isNaN(rate)) {
+    document.getElementById('result').innerText = "Please enter valid numbers!";
+    return;
+  }
+  
+  let converted = amount * rate;
+  document.getElementById('result').innerText = `${amount} FRW = ${converted.toFixed(2)} ${currency}`;
+}
+</script>
+
+</body>
+</html>
