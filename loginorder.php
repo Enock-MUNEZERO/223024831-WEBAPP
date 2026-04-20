@@ -436,8 +436,8 @@ if(isset($_POST['login'])){
                 userBtn.classList.add('active');
                 adminBtn.classList.remove('active');
                 registerLink.innerHTML = 'No account? <a href="registeruser.php">Register as User</a>';
-                infoText.innerHTML = '💡 User: Regular account to place orders and track deliveries';
-                loginBtn.innerHTML = '🚀 Login';
+                infoText.innerHTML = 'User: Regular account to place orders and track deliveries';
+                loginBtn.innerHTML = 'Login';
                 usernameField.placeholder = 'Username';
             }
         }
@@ -453,7 +453,7 @@ if(isset($_POST['login'])){
         // Form validation before submit
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             let btn = document.getElementById('loginBtn');
-            btn.innerHTML = '⏳ Processing...';
+            btn.innerHTML = 'Processing...';
             btn.style.opacity = '0.7';
         });
     </script>

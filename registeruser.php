@@ -2,14 +2,41 @@
 
 <?php
 if(isset($_POST['register'])){
-$username=$_POST['username'];
-$email=$_POST['email'];
-$password=$_POST['password'];
-
-$conn->query("INSERT INTO users2 VALUES(null,'$username','$email','$password')");
-echo "<p style='color:#008000
-
-;text-align:center;'>Account Created Successfully!</p>";
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
+    $errors = array();
+    
+    // Check if username already exists
+    $check_username = $conn->query("SELECT username FROM users2 WHERE username='$username'");
+    if($check_username->num_rows > 0){
+        $errors[] = "Username already exists! Please choose another username.";
+    }
+    
+    // Check if email already exists
+    $check_email = $conn->query("SELECT email FROM users2 WHERE email='$email'");
+    if($check_email->num_rows > 0){
+        $errors[] = "Email already exists!";
+    }
+    
+    // If no errors, insert user
+    if(empty($errors)){
+        if($conn->query("INSERT INTO users2 VALUES(null,'$username','$email','$password')")){
+            echo "<p style='color:#008000; text-align:center; font-weight:bold; background:#d4edda; padding:10px; border-radius:5px;'>✅ Account Created Successfully!</p>";
+            // Clear form after successful registration
+            $username = $email = $password = "";
+        } else {
+            echo "<p style='color:#dc3545; text-align:center; font-weight:bold;'>Error: " . $conn->error . "</p>";
+        }
+    } else {
+        // Display all errors
+        echo "<div style='color:#dc3545; text-align:center; font-weight:bold; background:#f8d7da; padding:10px; border-radius:5px; margin-bottom:10px;'>";
+        foreach($errors as $error){
+            echo "❌ " . $error . "<br>";
+        }
+        echo "</div>";
+    }
 }
 ?>
 
@@ -42,19 +69,47 @@ echo "<p style='color:#008000
         width: 100%;
         padding: 10px;
         margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #CD853F;
+        box-shadow: 0 0 5px rgba(205, 133, 63, 0.3);
     }
 
     button {
         width: 100%;
         padding: 10px;
-        background: #008080;
+        background: #CD853F;
         color: white;
         border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background: #b5723a;
     }
 
     h2 {
         text-align: center;
-        color: #008080F;
+        color: #CD853F;
+        margin-bottom: 20px;
+    }
+    
+    a {
+        color: #CD853F;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    a:hover {
+        text-decoration: underline;
     }
     </style>
 
@@ -63,20 +118,19 @@ echo "<p style='color:#008000
 <body>
 
     <form method="POST">
-        <h2>Create Account For User</h2>
+        <h2>📝 Create Account For User</h2>
 
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
+        <input type="text" name="username" placeholder="👤 Username" value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>" required>
+        <input type="email" name="email" placeholder="📧 Email" value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>" required>
+        <input type="password" name="password" placeholder="🔒 Password" required>
 
         <button name="register">Register</button>
 
-        <p style="text-align:center;margin-top:10px;">
-            Already have account? <a href="loginorder.php">Login</a>
+        <p style="text-align:center;margin-top:15px;">
+            Already have account? <a href="loginorder.php">Login here</a>
         </p>
-
     </form>
 
 </body>
 
-</html>
+</html> 

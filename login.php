@@ -9,7 +9,7 @@ if(isset($_POST['login'])){
     $password = $_POST['password'];
     
     // HARDCODED ADMIN LOGIN (separate from user registrations)
-    if(($username === 'Admin' || $username === 'admin') && $password === 'admin123'){
+    if(($username === 'Admin' || $username === 'admin') && $password === 'enock123'){
         $_SESSION['user'] = 'Admin';
         $_SESSION['role'] = 'admin';
         header("location: dashboard.php");
@@ -181,15 +181,15 @@ if(isset($_POST['login'])){
             border-left: 3px solid #d9534f;
         }
 
-        .admin-note {
+        .admin-note { 
             text-align: center;
             font-size: 12px;
             color: #999;
             margin-top: 15px;
             padding: 8px;
-            background: #fff3cd;
+            background: #ffffff;
             border-radius: 8px;
-            border-left: 3px solid #ffc107;
+            border-left: 3px solid #ffffff;
         }
 
         @media (max-width: 480px) {
@@ -218,17 +218,17 @@ if(isset($_POST['login'])){
             <h2>Welcome to SILVER Hotel</h2>
             
             <div class="login-info">
-                <p><strong>Customers:</strong> Login with your username and password</p>
-                <p><strong>Admin Access:</strong> Username: <strong>Admin</strong> | Password: <strong>admin123</strong></p>
+                <p><strong>Admin:</strong> Login with your username and password</p>
+                <p><strong>Admin Access:</strong> Username: <strong>Admin</strong> | Password: <strong>enock123</strong></p>
             </div>
             
             <input type="text" name="username" id="username" placeholder="Username" required autocomplete="off">
             <input type="password" name="password" id="password" placeholder="Password" required>
             
-            <button type="submit" name="login">🚀 Login</button>
+            <button type="submit" name="login">Login</button>
             
             <div class="admin-note">
-                 For customer accounts, please contact hotel reception to get your login credentials.
+                    Welcome Admin!
             </div>
         </form>
     </div>
