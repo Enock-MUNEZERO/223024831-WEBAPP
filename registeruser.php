@@ -118,11 +118,11 @@ if(isset($_POST['register'])){
 <body>
 
     <form method="POST">
-        <h2>📝 Create Account For User</h2>
+        <h2>Create Account For User</h2>
 
-        <input type="text" name="username" placeholder="👤 Username" value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>" required>
-        <input type="email" name="email" placeholder="📧 Email" value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>" required>
-        <input type="password" name="password" placeholder="🔒 Password" required>
+        <input type="text" name="username" placeholder="Username" value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>" required>
+        <input type="email" name="email" placeholder="Email" value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>" required>
+        <input type="password" name="password" placeholder="Password" required>
 
         <button name="register">Register</button>
 
